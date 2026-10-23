@@ -17,8 +17,31 @@ public class DatabaseDemoApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return  runner -> {
-			createStudent(studentDAO);
+			// createStudent(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		// create the student object
+		System.out.println("Creating the new student object......");
+		Student tempStudent = new Student("Harrington", "Muleya", "harrington@gmail.com");
+
+		// save the student
+		System.out.println("Saving the student........");
+		studentDAO.save(tempStudent);
+
+		// display the id of the saved student
+		int theId = tempStudent.getId();
+		System.out.println("Saved the student: Generated id: " + theId);
+
+		// retrieve the student based on the id: primary key
+		System.out.println("Retrieving the student with id: " + theId);
+		Student myStudent = studentDAO.findById(theId);
+
+
+		// display the student
+		System.out.println("Found the student: " + myStudent.toString());
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
