@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class DatabaseDemoApplication {
 
@@ -18,8 +20,19 @@ public class DatabaseDemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return  runner -> {
 			// createStudent(studentDAO);
-			readStudent(studentDAO);
+			// readStudent(studentDAO);
+			queryForStudent(studentDAO);
 		};
+	}
+
+	private void queryForStudent(StudentDAO studentDAO) {
+		// get list of students
+		List<Student> students = studentDAO.findAll();
+
+		// display list of students
+		for(Student student: students){
+			System.out.println(student);
+		}
 	}
 
 	private void readStudent(StudentDAO studentDAO) {
@@ -41,7 +54,7 @@ public class DatabaseDemoApplication {
 
 
 		// display the student
-		System.out.println("Found the student: " + myStudent.toString());
+		System.out.println("Found the student: " + myStudent);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
