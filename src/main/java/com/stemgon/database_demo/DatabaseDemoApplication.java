@@ -24,9 +24,15 @@ public class DatabaseDemoApplication {
 			// queryForStudent(studentDAO);
 			// queryForStudentsByLastName(studentDAO);
 			// mergeStudent(studentDAO);
-			deleteStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			deleteAllStudents(studentDAO);
 
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		int rowCount = studentDAO.deleteAll();
+		System.out.println("Deleted row count: " + rowCount);
 	}
 
 	private void deleteStudent(StudentDAO studentDAO) {
