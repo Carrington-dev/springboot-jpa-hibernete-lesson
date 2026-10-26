@@ -21,8 +21,19 @@ public class DatabaseDemoApplication {
 		return  runner -> {
 			// createStudent(studentDAO);
 			// readStudent(studentDAO);
-			queryForStudent(studentDAO);
+			// queryForStudent(studentDAO);
+			queryForStudentsByLastName(studentDAO);
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		// get list of students
+		List<Student> students = studentDAO.findStudentByLastName("Muleya");
+
+		// display students
+		for(Student student: students){
+			System.out.println(student);
+		}
 	}
 
 	private void queryForStudent(StudentDAO studentDAO) {
